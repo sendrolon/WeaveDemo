@@ -45,8 +45,9 @@ import java.util.Map;
 public class LedSwitchesFragment extends Fragment implements OnLightToggledListener {
     private static final String TAG = "LedSwitchesFragment";
 
-    private LedSwitchesAdapter mAdapter;
+    //private LedSwitchesAdapter mAdapter;
 
+    private SensorElementAdapter mAdapter;
     // Instance of the WeaveApi.
     private WeaveApiClient mApiClient;
     private WeaveDevice mDevice;
@@ -68,7 +69,7 @@ public class LedSwitchesFragment extends Fragment implements OnLightToggledListe
         recyclerView.setLayoutManager(layoutManager);
 
         // specify an adapter (see also next example)
-        mAdapter = new LedSwitchesAdapter(this);
+        mAdapter = new SensorElementAdapter();
         recyclerView.setAdapter(mAdapter);
         recyclerView.setHasFixedSize(true);
 
@@ -116,6 +117,13 @@ public class LedSwitchesFragment extends Fragment implements OnLightToggledListe
                 .setParameters(commandParams);
     }
 
+    public Command querySensorStateCommand() {
+        return new Command()
+                .setName("_sensors._query")
+                .setParameters(new HashMap<String, Object>());
+
+    }
+
     /**
      * Sets the state of a single LED
      * @param device The target weave device
@@ -132,8 +140,8 @@ public class LedSwitchesFragment extends Fragment implements OnLightToggledListe
 
             @Override
             protected Response<CommandResult> doInBackground(Void... params) {
-                Command command = getSetLightStateCommand(normalizedLedIndex, lightState);
-
+                //Command command = getSetLightStateCommand(normalizedLedIndex, lightState);
+                Command command = querySensorStateCommand();
                 return Weave.COMMAND_API.execute(
                         mApiClient,
                         device.getId(),
@@ -185,7 +193,7 @@ public class LedSwitchesFragment extends Fragment implements OnLightToggledListe
                     else {
 
                         Map<String, Object> state = (Map<String, Object>)
-                                result.getSuccess().getStateValue("_ledflasher");
+                                result.getSuccess().getStateValue("_sensors");
                         if (state == null) {
                             Log.i(TAG, "Command definition Doesn't contain led flasher. " +
                                     "States are " + result.getSuccess().getStateNames().toString());
@@ -194,15 +202,17 @@ public class LedSwitchesFragment extends Fragment implements OnLightToggledListe
                                     .show();
                         } else {
                             Log.i(TAG, "Success querying device for LEDs! Populating now.");
-
+                            Log.i(TAG, "state = " + state.toString());
                             // Convert list of boolean states to Led Objects, use them
                             // to populate a collection of UI switches for the user.
-                            ArrayList<Boolean> ledStates =  (ArrayList<Boolean>) state.get("_leds");
+                            //ArrayList<Boolean> ledStates =  (ArrayList<Boolean>) state.get("_leds");
                             mAdapter.clear();
-                            for (Boolean ledState : ledStates) {
-                                mAdapter.add(new Led(ledState));
+                            //for (Boolean ledState : ledStates) {
+                            //    mAdapter.add(new Led(ledState));
+                            //}
+                            for (String key : state.keySet()){
+                                mAdapter.add(new Sensor(key, state.get(key)));
                             }
-
                         }
                     }
                 }

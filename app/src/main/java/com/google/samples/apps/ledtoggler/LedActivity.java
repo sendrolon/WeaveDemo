@@ -20,10 +20,19 @@ import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 
 import com.google.android.apps.weave.apis.data.WeaveDevice;
+import com.google.android.gms.nearby.messages.Message;
+
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.logging.Handler;
+import java.util.logging.LogRecord;
 
 /**
  * Show controls to enable or disable LEDs on a given {@link WeaveDevice}.
@@ -31,9 +40,25 @@ import com.google.android.apps.weave.apis.data.WeaveDevice;
 public class LedActivity extends AppCompatActivity implements WeaveDeviceProvider {
 
     public static final String EXTRA_KEY_WEAVE_DEVICE = BuildConfig.APPLICATION_ID + ".weave_device";
-
+    private String TAG = this.getClass().toString();
     private WeaveDevice mDevice;
+    private Switch updateEnableSwitch;
 
+    android.os.Handler handler = new android.os.Handler() {
+        public void handleMessage(android.os.Message msg) {
+            if (msg.what == 1) {
+                if (updateEnableSwitch.isChecked()) {
+                    LedSwitchesFragment fragment = (LedSwitchesFragment) getSupportFragmentManager()
+                            .findFragmentById(R.id.led_fragment);
+                    fragment.updateLightStates();
+                    Log.d(TAG, "Timer rings!!");
+                }
+                android.os.Message message = new android.os.Message();
+                message.what = 1;
+                handler.sendMessageDelayed(message, 1000);
+            }
+        }
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,12 +71,25 @@ public class LedActivity extends AppCompatActivity implements WeaveDeviceProvide
                     EXTRA_KEY_WEAVE_DEVICE);
         }
 
+        updateEnableSwitch = (Switch) findViewById(R.id.sensor_update_switch);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.inflateMenu(R.menu.menu_leds);
         toolbar.setTitle(R.string.title_text);
         toolbar.setSubtitle(mDevice.getName());
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        updateEnableSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+            }
+        });
+
+        android.os.Message msg = new android.os.Message();
+        msg.what = 1;
+        handler.sendMessage(msg);
     }
 
     private WeaveDevice getDeviceFromIntent(Intent intent) {
@@ -86,5 +124,7 @@ public class LedActivity extends AppCompatActivity implements WeaveDeviceProvide
     public WeaveDevice getDevice() {
         return mDevice;
     }
+
+
 
 }

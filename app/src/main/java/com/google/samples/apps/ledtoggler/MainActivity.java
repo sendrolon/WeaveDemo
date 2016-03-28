@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity
      * Android OAuth Client credentials associated with this app. Note that this is not
      * the project ID, but the project number. It should be a long integer number.
      */
-    private static final String CLOUD_PROJECT_NUMBER = "REPLACE_WITH_YOUR_PROJECT_NUMBER";
+    private static final String CLOUD_PROJECT_NUMBER = "1078332985708";
 
     /**
      * Type of the devices that this app will request access for. Common types are
