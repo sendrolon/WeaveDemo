@@ -49,7 +49,7 @@ limitations under the License.
             android:text="Choose to Update Sensor data"></Switch>
         <fragment
             android:id="@+id/led_fragment"
-            android:name="com.google.samples.apps.ledtoggler.LedSwitchesFragment"
+            android:name="com.freescale.samples.apps.sensordemo.LedSwitchesFragment"
             tools:layout="@layout/fragment_leds"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             android:layout_width="match_parent"

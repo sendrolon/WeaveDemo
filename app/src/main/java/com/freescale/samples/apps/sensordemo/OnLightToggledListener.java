@@ -14,23 +14,12 @@
  * limitations under the License.
  */
 
-package com.google.samples.apps.ledtoggler;
+package com.freescale.samples.apps.sensordemo;
 
-public class Led {
 
-    private boolean mLightOn;
-
-    public Led(boolean lightOn) {
-        mLightOn = lightOn;
-    }
-
-    public boolean isLightOn() {
-        return mLightOn;
-    }
-
-    public boolean toggleLight() {
-        mLightOn = !mLightOn;
-        return mLightOn;
-    }
-
+/**
+ * Simple callback interface for any class that needs to listen for Leds being switched on or off.
+ */
+public interface OnLightToggledListener {
+    void onLightToggled(int position, boolean isLightOn);
 }

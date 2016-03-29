@@ -15,8 +15,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 <resources>
-    <string name="app_name">LED Toggler</string>
-    <string name="gcd_sync_service_title">Weave LEDToggler sample sync service</string>
+    <string name="app_name">SensorDemo</string>
+    <string name="gcd_sync_service_title">Weave SensorDemo sample sync service</string>
 
     <!-- User TOS accepted -->
     <string name="pref_tos_key">tos</string>
@@ -41,7 +41,7 @@ limitations under the License.
     <string name="error_querying_state">Could not query device state. See log for more details</string>
     <string name="error_unexpected_states">Device connected, but doesn\'t have expected LEDFlasher states.
         See log for more details</string>
-    <string name="error_setting_state">Could not set LED. See log for more details</string>
+    <string name="error_setting_state">Could not set Sensor. See log for more details</string>
     <string name="unknown_device_type">(unknown)</string>
     <string name="image_description_device_icon">Device icon</string>
 

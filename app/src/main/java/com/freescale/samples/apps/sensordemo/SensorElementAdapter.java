@@ -1,4 +1,4 @@
-package com.google.samples.apps.ledtoggler;
+package com.freescale.samples.apps.sensordemo;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;

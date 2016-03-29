@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.google.samples.apps.ledtoggler;
+package com.freescale.samples.apps.sensordemo;
 
 import android.content.Context;
 import android.content.Intent;

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.google.samples.apps.ledtoggler" >
+    package="com.freescale.samples.apps.sensordemo" >
 
     <!-- Weave Manager's permissions. -->
     <!-- Allows applications to access information about networks -->
@@ -30,7 +30,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme.NoActionBar">
         <activity
-            android:name=".MainActivity"
+            android:name="com.freescale.samples.apps.sensordemo.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -39,11 +39,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LedActivity"
+            android:name="com.freescale.samples.apps.sensordemo.LedActivity"
             android:label="@string/app_name" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value="com.freescale.samples.apps.sensordemo.MainActivity" />
         </activity>
 
         <provider

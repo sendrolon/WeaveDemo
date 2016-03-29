@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.google.samples.apps.ledtoggler;
+package com.freescale.samples.apps.sensordemo;
 
 import android.app.Dialog;
 import android.content.Context;

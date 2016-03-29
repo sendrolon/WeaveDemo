@@ -1,6 +1,4 @@
-package com.google.samples.apps.ledtoggler;
-
-import java.util.Map;
+package com.freescale.samples.apps.sensordemo;
 
 /**
  * Created by B50027 on 3/25/2016.

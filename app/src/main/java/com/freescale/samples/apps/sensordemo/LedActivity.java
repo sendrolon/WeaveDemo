@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.google.samples.apps.ledtoggler;
+package com.freescale.samples.apps.sensordemo;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -27,12 +27,6 @@ import android.widget.CompoundButton;
 import android.widget.Switch;
 
 import com.google.android.apps.weave.apis.data.WeaveDevice;
-import com.google.android.gms.nearby.messages.Message;
-
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.logging.Handler;
-import java.util.logging.LogRecord;
 
 /**
  * Show controls to enable or disable LEDs on a given {@link WeaveDevice}.

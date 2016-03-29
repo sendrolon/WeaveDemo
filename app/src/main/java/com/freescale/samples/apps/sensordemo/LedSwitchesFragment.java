@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.google.samples.apps.ledtoggler;
+package com.freescale.samples.apps.sensordemo;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -35,7 +35,6 @@ import com.google.android.apps.weave.apis.data.WeaveDevice;
 import com.google.android.apps.weave.apis.data.responses.Response;
 import com.google.android.apps.weave.framework.apis.Weave;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
